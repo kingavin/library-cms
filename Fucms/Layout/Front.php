@@ -72,7 +72,6 @@ class Front implements ServiceLocatorAwareInterface
 						->fetchOne();
 					if(is_null($layoutDoc)) {
 						$layoutDoc = $layoutCo->create();
-						$layoutDoc->isDisplayHead = 1;
 						$layoutDoc->default = 1;
 						$layoutDoc->type = $routeType;
 						$layoutDoc->save();
@@ -87,7 +86,6 @@ class Front implements ServiceLocatorAwareInterface
 						->fetchOne();
 					if(is_null($layoutDoc)) {
 						$layoutDoc = $layoutCo->create();
-						$layoutDoc->isDisplayHead = 1;
 						$layoutDoc->default = 1;
 						$layoutDoc->type = 'user';
 						$layoutDoc->save();
@@ -100,7 +98,6 @@ class Front implements ServiceLocatorAwareInterface
 					if(is_null($layoutDoc)) {
 						if(in_array($controllerName, array('index', 'order', 'payment-gateway'))) {
 							$layoutDoc = $layoutCo->create();
-							$layoutDoc->isDisplayHead = 1;
 							$layoutDoc->default = 1;
 							$layoutDoc->type = 'shop';
 							$layoutDoc->controllerName = $controllerName;
