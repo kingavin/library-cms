@@ -1,5 +1,5 @@
 <?php
-namespace Fucms\Session;
+namespace Fucms\Session\Server;
 
 use Exception;
 use SimpleXMLElement;
@@ -12,19 +12,12 @@ class Admin extends SsoUser
 	private static $_md5salt = 'Hgoc&639Jgo';
 	private static $_md5salt2 = 'jiohGY6&*9';
 	
-	public $orgCode;
-	
 	protected $_sessionContainerName = 'sso\admin';
 	
 	public static function checkLoginStatue()
 	{
 		$ssoUser = new Container('sso\admin');
 		return $ssoUser->offsetGet('isLogin');
-	}
-	
-	public function setOrgCode($oc)
-	{
-		$this->orgCode = $oc;
 	}
 	
 	public function getServiceType()
@@ -72,11 +65,8 @@ class Admin extends SsoUser
 		if(!$this->isLogin()) {
 			return false;
 		}
-		
 		if(
-			$this->getUserData('userType') != 'designer' &&
-			$this->getUserData('userType') != 'enorange-admin' &&
-			($this->getUserData('orgCode') != $this->orgCode)
+			$this->getUserData('userType') != 'webroot'
 		) {
 			return false;
 		}
