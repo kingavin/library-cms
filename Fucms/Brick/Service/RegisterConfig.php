@@ -24,7 +24,7 @@ class RegisterConfig
 		if($layoutDoc->isDisplayHead == 1) {
 			$co->addFilter('$or', array(
 				array('layoutId' => $layoutId),
-				array('layoutId' => 0))
+				array('layoutId' => '0'))
 			)
 			->addFilter('active', 1)
 			->sort('sort');
