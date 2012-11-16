@@ -14,13 +14,7 @@ class Admin extends SsoUser
 	
 	public $orgCode;
 	
-	protected $_sessionContainerName = 'sso\admin';
-	
-	public static function checkLoginStatue()
-	{
-		$ssoUser = new Container('sso\admin');
-		return $ssoUser->offsetGet('isLogin');
-	}
+	protected $_sessionContainerName = 'sso\remote_user';
 	
 	public function setOrgCode($oc)
 	{
@@ -51,7 +45,8 @@ class Admin extends SsoUser
 	    	$userDataArr[$tag] = (string)$val;
 	    }
 	    
-	    $this->setSessionValue('isLogin', true);
+	    $this->isLogin(true);
+	    $userDataArr['localCssMode'] = false;
 	    $this->setUserData($userDataArr);
 		return true;
 	}

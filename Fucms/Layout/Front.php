@@ -170,6 +170,19 @@ class Front implements ServiceLocatorAwareInterface
 		return $this->_resource;
 	}
 	
+	public function getResourceAlias()
+	{
+		$r = $this->getResource();
+		if($r == 'none' || $r == 'not-found') {
+			return null;
+		} else {
+			if(!empty($r->alias)) {
+				return $r->alias;
+			}
+		}
+		return null;
+	}
+	
 	public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
 	{
 		$this->sm = $serviceLocator;
