@@ -16,7 +16,8 @@ class Class_Mongo_Product_Doc extends App_Mongo_Entity_Doc
 		'showWhere',
 		'weight',
 		'graphics',
-		'attachmentFiles'
+		'attachmentFiles',
+		'status'
 	);
 	
 	public function setAttachments($urlArr, $nameArr, $typeArr)
@@ -30,5 +31,15 @@ class Class_Mongo_Product_Doc extends App_Mongo_Entity_Doc
 			$attachment[] = array('filetype' => $type, 'filename' => $nameArr[$key], 'urlname' => $urlArr[$key]);
 		}
 		$this->attachment = $attachment;
+	}
+	
+	public function toggleTrash()
+	{
+		if($this->status == 'trash') {
+			$this->status = 'publish';
+		} else {
+			$this->status = 'trash';
+		}
+		$this->save();
 	}
 }
