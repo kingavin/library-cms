@@ -22,6 +22,9 @@ class Class_Mongo_Product_Doc extends App_Mongo_Entity_Doc
 	
 	public function setAttachments($urlArr, $nameArr, $typeArr)
 	{
+		if(count($urlArr) == 0) {
+			return true;
+		}
 		if(count($urlArr) != count($nameArr) || count($urlArr) != count($typeArr)) {
 			throw new Exception('attachment count does not match each other!');
 		}

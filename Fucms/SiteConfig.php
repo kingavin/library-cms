@@ -24,7 +24,7 @@ class SiteConfig
 		
 		$this->libUrl = 'http://'.$fileServer."/cms/".$libVersion;
 		$this->extUrl = 'http://'.$fileServer."/ext";
-		$this->fileFolderUrl = "http://storage.aliyun.com/public-misc/".$this->remoteSiteId;
+		$this->fileFolderUrl = "http://misc.fucms.com/public-misc/".$this->remoteSiteId;
 		$this->mongoServer = '127.0.0.1';
 	}
 }
