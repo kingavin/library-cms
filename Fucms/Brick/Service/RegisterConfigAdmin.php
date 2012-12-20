@@ -9,8 +9,8 @@ class RegisterConfigAdmin
 	public function configRegister(Register $register)
 	{
 		$register->registerBrick(array(
-			'Admin\ActionTitle',
-			'Admin\ActionMenu'
+				'Admin\ActionTitle',
+				'Admin\ActionMenu'
 		));
 	}
 }
