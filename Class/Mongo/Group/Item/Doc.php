@@ -5,6 +5,7 @@ class Class_Mongo_Group_Item_Doc extends App_Mongo_Tree_Leaf_Doc
 			'groupType',
 			'label',
 			'alias',
+			'layoutAlias',
 			'parentId',
 			'sort',
 			'className'

@@ -6,6 +6,7 @@ class Class_Mongo_Book_Page_Doc extends App_Mongo_Tree_Leaf_Doc
 			'label',
 			'fulltext',
 			'alias',
-			'updated'
+			'updated',
+			'editor'
 	);
 }

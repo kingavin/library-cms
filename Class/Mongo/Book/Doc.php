@@ -2,9 +2,10 @@
 class Class_Mongo_Book_Doc extends App_Mongo_Tree_Doc
 {
 	protected $_field = array(
-			'label',
-			'alias',
-			'description'
+		'label',
+		'alias',
+		'layoutAlias',
+		'description'
 	);
 
 	protected function _getIndex()
