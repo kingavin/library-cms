@@ -80,19 +80,8 @@ class Front implements ServiceLocatorAwareInterface
 				case 'application/book':
 					$bookId = $id;
 					$pageId = $this->_routeMatch->getParam('pageId');
-					
 					$context = new Context\Book($factory);
 					$context->init($bookId, $pageId, $presetLayoutDoc);
-					
-// 					$co = $factory->_m('Book');
-// 					$this->_resourceParams['bookId'] = $this->_routeMatch->getParam('bookId');
-// 					$this->_resourceParams['pageId'] = $this->_routeMatch->getParam('pageId');
-// 					$co->addFilter('$or', array(
-// 						array('_id' => new MongoId($id)),
-// 						array('alias' => $id)
-// 					));
-// 					$this->_resource = $co->fetchOne();
-// 					$this->_resourceType = 'book';
 					break;
 				case 'application/article':
 					$context = new Context\Article($factory);

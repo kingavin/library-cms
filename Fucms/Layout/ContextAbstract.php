@@ -8,6 +8,7 @@ abstract class ContextAbstract
 {
 	protected $factory;
 	protected $layoutDoc;
+	protected $contextId = null;
 	
 	public function __construct($factory)
 	{
@@ -29,6 +30,11 @@ abstract class ContextAbstract
 	public function getLayoutDoc()
 	{
 		return $this->layoutDoc;
+	}
+	
+	public function getContextId()
+	{
+		return $this->contextId;
 	}
 	
 	abstract public function getType();

@@ -34,6 +34,7 @@ class ArticleList extends ContextAbstract
 		$layoutAlias = null;
 		if(isset( $this->trail[1]['layoutAlias'])) {
 			$layoutAlias = $this->trail[1]['layoutAlias'];
+			$this->contextId = $layoutAlias;
 		}
 		
 		$layoutDoc = null;
