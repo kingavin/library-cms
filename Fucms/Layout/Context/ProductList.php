@@ -6,7 +6,7 @@ use Fucms\Layout\ContextAbstract;
 
 class ProductList extends ContextAbstract
 {
-	protected $groupId;
+	protected $groupItemId;
 	protected $routeParams = array();
 	protected $groupItemDoc;
 	protected $groupDoc;
@@ -20,16 +20,16 @@ class ProductList extends ContextAbstract
 				array('alias' => $id)
 			))->fetchOne();
 		if($groupItemDoc == null) {
-			$groupId = 0;
+			$groupItemId = 0;
 		} else {
-			$groupId = $groupItemDoc->getId();
+			$groupItemId = $groupItemDoc->getId();
 		}
 		$groupCo = $this->factory->_m('Group');
 		$groupDoc = $groupCo->findProductGroup();
-		$this->groupId = $groupId;
+		$this->groupItemId = $groupItemId;
 		$this->groupItemDoc = $groupItemDoc;
 		$this->groupDoc = $groupDoc;
-		$this->trail = $groupDoc->getTrail($groupId);
+		$this->trail = $groupDoc->getTrail($groupItemId);
 		
 		$layoutAlias = null;
 		if(isset( $this->trail[1]['layoutAlias'])) {
@@ -84,9 +84,9 @@ class ProductList extends ContextAbstract
 		return $this->trail;
 	}
 	
-	public function getId()
+	public function getGroupItemId()
 	{
-		return $this->groupId;
+		return $this->groupItemId;
 	}
 	
 	public function getType()
