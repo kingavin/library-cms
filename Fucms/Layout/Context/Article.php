@@ -5,7 +5,7 @@ use Fucms\Layout\ContextAbstract;
 
 class Article extends ContextAbstract
 {
-	protected $groupId;
+	protected $groupItemId;
 	protected $groupAlias;
 	protected $groupDoc;
 	protected $trail = array();
@@ -15,14 +15,14 @@ class Article extends ContextAbstract
 		$articleCo = $this->factory->_m('Article');
 		$articleDoc = $articleCo->find($id);
 		if($articleDoc == null) {
-			$this->groupId = 0;
+			$this->groupItemId = 0;
 		} else {
-			$this->groupId = $articleDoc->groupId;
+			$this->groupItemId = $articleDoc->groupId;
 		}
 		$groupCo = $this->factory->_m('Group');
 		$groupDoc = $groupCo->findArticleGroup();
 		$this->groupDoc = $groupDoc;
-		$this->trail = $groupDoc->getTrail($this->groupId);
+		$this->trail = $groupDoc->getTrail($this->groupItemId);
 		
 		$layoutCo = $this->factory->_m('Layout');
 		$layoutDoc = $layoutCo->addFilter('type', 'article')
@@ -38,9 +38,9 @@ class Article extends ContextAbstract
 		return $this->groupDoc;
 	}
 	
-	public function getId()
+	public function getGroupItemId()
 	{
-		return $this->groupId;
+		return $this->groupItemId;
 	}
 	
 	public function getTrail()
