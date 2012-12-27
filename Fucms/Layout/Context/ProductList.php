@@ -32,10 +32,12 @@ class ProductList extends ContextAbstract
 		$this->trail = $groupDoc->getTrail($groupItemId);
 		
 		$layoutAlias = null;
-		if(isset( $this->trail[1]['layoutAlias'])) {
-			$layoutAlias = $this->trail[1]['layoutAlias'];
-			$this->contextId = $layoutAlias;
+		foreach($this->trail as $seek) {
+			if(isset( $seek['layoutAlias'])) {
+				$layoutAlias = $seek['layoutAlias'];
+			}
 		}
+		$this->contextId = $layoutAlias;
 		
 		$layoutDoc = null;
 		if(is_null($presetLayoutDoc)) {
