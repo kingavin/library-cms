@@ -10,6 +10,8 @@ class Article extends ContextAbstract
 	protected $groupDoc;
 	protected $trail = array();
 	
+	protected $articleLabel;
+	
 	public function init($id)
 	{
 		$articleCo = $this->factory->_m('Article');
@@ -18,6 +20,7 @@ class Article extends ContextAbstract
 			$this->groupItemId = 0;
 		} else {
 			$this->groupItemId = $articleDoc->groupId;
+			$this->articleLabel = $articleDoc->label;
 		}
 		$groupCo = $this->factory->_m('Group');
 		$groupDoc = $groupCo->findArticleGroup();
@@ -43,9 +46,29 @@ class Article extends ContextAbstract
 		return $this->groupItemId;
 	}
 	
-	public function getTrail()
+	public function getBreadcrumb()
 	{
-		return $this->trail;
+		if($this->breadcrumb == null) {
+			foreach($this->trail as $step) {
+				if(empty($step['alias'])) {
+					$url = "/list-".$step['id'].'/page1.shtml';
+				} else {
+					$url = "/list-".$step['alias'].'/page1.shtml';
+				}
+	
+				$this->breadcrumb[] = array(
+					'url' => $url,
+					'label' => $step['label']
+				);
+			}
+		}
+		
+		$this->breadcrumb[] = array(
+			'url' => null,
+			'label' => $this->articleLabel
+		);
+		
+		return $this->breadcrumb;
 	}
 	
 	public function getType()

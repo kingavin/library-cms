@@ -8,6 +8,8 @@ abstract class ContextAbstract
 {
 	protected $factory;
 	protected $layoutDoc;
+	protected $trail;
+	protected $breadcrumb;
 	protected $contextId = null;
 	
 	public function __construct($factory)
@@ -35,6 +37,11 @@ abstract class ContextAbstract
 	public function getContextId()
 	{
 		return $this->contextId;
+	}
+	
+	public function getTrail()
+	{
+		return $this->trail;
 	}
 	
 	abstract public function getType();

@@ -81,9 +81,24 @@ class ProductList extends ContextAbstract
 		return $this->groupDoc;
 	}
 	
-	public function getTrail()
+	public function getBreadcrumb()
 	{
-		return $this->trail;
+		if($this->breadcrumb == null) {
+			foreach($this->trail as $step) {
+				if(empty($step['alias'])) {
+					$url = "/product-list-".$step['id'].'/page1.shtml';
+				} else {
+					$url = "/product-list-".$step['alias'].'/page1.shtml';
+				}
+	
+				$this->breadcrumb[] = array(
+					'url' => $url,
+					'label' => $step['label']
+				);
+			}
+		}
+	
+		return $this->breadcrumb;
 	}
 	
 	public function getGroupItemId()
