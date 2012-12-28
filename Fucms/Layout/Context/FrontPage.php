@@ -36,6 +36,11 @@ class FrontPage extends ContextAbstract
 		$this->layoutDoc = $layoutDoc;
 	}
 	
+	public function getBreadcrumb()
+	{
+		return null;
+	}
+	
 	public function getType()
 	{
 		return "frontpage";

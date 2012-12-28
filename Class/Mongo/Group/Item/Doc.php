@@ -9,6 +9,8 @@ class Class_Mongo_Group_Item_Doc extends App_Mongo_Tree_Leaf_Doc
 			'disabled',
 			'parentId',
 			'sort',
-			'className'
+			'className',
+			'iconName',
+			'bannerName'
 	);
 }

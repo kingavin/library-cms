@@ -67,9 +67,9 @@ class Book extends ContextAbstract
 		return $this->bookId;
 	}
 	
-	public function getTrail()
+	public function getBreadcrumb()
 	{
-		return $this->trail;
+		return array();
 	}
 	
 	public function getType()
