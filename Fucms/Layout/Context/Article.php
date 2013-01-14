@@ -10,24 +10,26 @@ class Article extends ContextAbstract
 	protected $groupDoc;
 	protected $trail = array();
 	
+	protected $articleId;
 	protected $articleLabel;
 	
 	public function init($id)
 	{
-		$articleCo = $this->factory->_m('Article');
+		$articleCo = $this->dbFactory->_m('Article');
 		$articleDoc = $articleCo->find($id);
 		if($articleDoc == null) {
 			$this->groupItemId = 0;
 		} else {
 			$this->groupItemId = $articleDoc->groupId;
+			$this->articleId = $articleDoc->getId();
 			$this->articleLabel = $articleDoc->label;
 		}
-		$groupCo = $this->factory->_m('Group');
+		$groupCo = $this->dbFactory->_m('Group');
 		$groupDoc = $groupCo->findArticleGroup();
 		$this->groupDoc = $groupDoc;
 		$this->trail = $groupDoc->getTrail($this->groupItemId);
 		
-		$layoutCo = $this->factory->_m('Layout');
+		$layoutCo = $this->dbFactory->_m('Layout');
 		$layoutDoc = $layoutCo->addFilter('type', 'article')
 			->fetchOne();
 		if($layoutDoc == null) {
@@ -69,6 +71,16 @@ class Article extends ContextAbstract
 		);
 		
 		return $this->breadcrumb;
+	}
+	
+	public function getResourceId()
+	{
+		return $this->articleId;
+	}
+	
+	public function getTitle()
+	{
+		return $this->articleLabel;
 	}
 	
 	public function getType()

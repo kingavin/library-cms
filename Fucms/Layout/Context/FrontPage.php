@@ -9,7 +9,7 @@ class FrontPage extends ContextAbstract
 	
 	public function init($id, $presetLayoutDoc = null)
 	{
-		$layoutCo = $this->factory->_m('Layout');
+		$layoutCo = $this->dbFactory->_m('Layout');
 		
 		if($presetLayoutDoc == null) {
 			if($id == 'index') {
@@ -39,6 +39,16 @@ class FrontPage extends ContextAbstract
 	public function getBreadcrumb()
 	{
 		return null;
+	}
+	
+	public function getResourceId()
+	{
+		return $this->layoutDoc->getId();
+	}
+	
+	public function getTitle()
+	{
+		return $this->layoutDoc->label;
 	}
 	
 	public function getType()

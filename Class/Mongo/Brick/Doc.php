@@ -36,9 +36,13 @@ class Class_Mongo_Brick_Doc extends App_Mongo_Db_Document
 	public function createSolid($controller)
 	{
 		$className = $this->extName;
-	  
-		$solidClassName = str_replace('_', '\\', $className);
-		$solidClassName = 'Brick\\'.$solidClassName;
+		if(substr($className, 0, 6) == 'Front_') {
+			$solidClassName = str_replace('_', '\\', $className);
+			$solidClassName = 'Brick\\'.$solidClassName;
+		} else {
+			$solidClassName = str_replace('_', '\\', $className);
+			$solidClassName = $solidClassName;
+		}
 		$solidBrick = new $solidClassName($this, $controller);
 		return $solidBrick;
 	}

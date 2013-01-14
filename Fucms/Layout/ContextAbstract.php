@@ -6,20 +6,20 @@ use MongoId;
 
 abstract class ContextAbstract
 {
-	protected $factory;
+	protected $dbFactory;
 	protected $layoutDoc;
 	protected $trail;
 	protected $breadcrumb;
 	protected $contextId = null;
 	
-	public function __construct($factory)
+	public function __construct($dbFactory)
 	{
-		$this->factory = $factory;
+		$this->dbFactory = $dbFactory;
 	}
 	
 	protected function createDefaultLayout($type)
 	{
-		$layoutCo= $this->factory->_m('Layout');
+		$layoutCo= $this->dbFactory->_m('Layout');
 		
 		$layoutDoc = $layoutCo->create();
 		$layoutDoc->type = $type;
@@ -43,6 +43,10 @@ abstract class ContextAbstract
 	{
 		return $this->trail;
 	}
+	
+	abstract public function getResourceId();
+	
+	abstract public function getTitle();
 	
 	abstract public function getType();
 }

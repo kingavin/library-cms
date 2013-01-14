@@ -12,9 +12,11 @@ class ArticleList extends ContextAbstract
 	protected $groupDoc;
 	protected $trail = array();
 	
+	protected $groupLabel;
+	
 	public function init($id, $presetLayoutDoc = null)
 	{
-		$groupItemCo = $this->factory->_m('Group_Item');
+		$groupItemCo = $this->dbFactory->_m('Group_Item');
 		$groupItemDoc = $groupItemCo->addFilter('$or', array(
 				array('_id' => new MongoId($id)),
 				array('alias' => $id)
@@ -23,8 +25,9 @@ class ArticleList extends ContextAbstract
 			$groupItemId = 0;
 		} else {
 			$groupItemId = $groupItemDoc->getId();
+			$this->groupLabel = $groupItemDoc->label;
 		}
-		$groupCo = $this->factory->_m('Group');
+		$groupCo = $this->dbFactory->_m('Group');
 		$groupDoc = $groupCo->findArticleGroup();
 		$this->groupItemId = $groupItemId;
 		$this->groupItemDoc = $groupItemDoc;
@@ -41,7 +44,7 @@ class ArticleList extends ContextAbstract
 		
 		$layoutDoc = null;
 		if(is_null($presetLayoutDoc)) {
-			$layoutCo = $this->factory->_m('Layout');
+			$layoutCo = $this->dbFactory->_m('Layout');
 			if($layoutAlias != null) {
 				//try to load by alias;
 				$layoutDoc = $layoutCo->addFilter('type', 'list')
@@ -104,6 +107,16 @@ class ArticleList extends ContextAbstract
 		}
 		
 		return $this->breadcrumb;
+	}
+	
+	public function getResourceId()
+	{
+		return $this->groupItemId;
+	}
+	
+	public function getTitle()
+	{
+		return $this->groupLabel;
 	}
 	
 	public function getType()

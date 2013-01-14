@@ -7,13 +7,14 @@ use Fucms\Layout\ContextAbstract;
 class Book extends ContextAbstract
 {
 	protected $bookId;
-	protected $bookAlias;
 	protected $bookDoc;
 	protected $trail = array();
 	
+	protected $bookLabel;
+	
 	public function init($bookId, $pageId, $presetLayoutDoc = null)
 	{
-		$bookCo = $this->factory->_m('Book');
+		$bookCo = $this->dbFactory->_m('Book');
 		$bookDoc = $bookCo->addFilter('$or', array(
 				array('_id' => new MongoId($bookId)),
 				array('alias' => $bookId)
@@ -21,18 +22,17 @@ class Book extends ContextAbstract
 		
 		if($bookDoc == null) {
 			$this->bookId = 0;
-			$this->bookAlias = null;
 			$layoutAlias = null;
 		} else {
 			$this->bookId = $bookDoc->getId();
-			$this->bookAlias = $bookDoc->alias;
+			$this->bookLabel = $bookDoc->label;
 			$layoutAlias = $bookDoc->layoutAlias;
 		}
 		$this->bookDoc = $bookDoc;
 		
 		$layoutDoc = null;
 		if(is_null($presetLayoutDoc)) {
-			$layoutCo = $this->factory->_m('Layout');
+			$layoutCo = $this->dbFactory->_m('Layout');
 			if($layoutAlias != null) {
 				//try to load by alias;
 				$layoutDoc = $layoutCo->addFilter('type', 'book')
@@ -70,6 +70,16 @@ class Book extends ContextAbstract
 	public function getBreadcrumb()
 	{
 		return array();
+	}
+	
+	public function getResourceId()
+	{
+		return $this->bookId;
+	}
+	
+	public function getTitle()
+	{
+		return $this->bookLabel;
 	}
 	
 	public function getType()

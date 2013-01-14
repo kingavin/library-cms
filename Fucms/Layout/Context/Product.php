@@ -10,11 +10,12 @@ class Product extends ContextAbstract
 	protected $groupDoc;
 	protected $trail = array();
 	
+	protected $productId;
 	protected $productLabel;
 	
 	public function init($id)
 	{
-		$productCo = $this->factory->_m('Product');
+		$productCo = $this->dbFactory->_m('Product');
 		$productDoc = $productCo->find($id);
 		if($productDoc == null) {
 			$this->groupItemId = 0;
@@ -22,12 +23,12 @@ class Product extends ContextAbstract
 			$this->groupItemId = $productDoc->groupId;
 			$this->productLabel = $productDoc->label;
 		}
-		$groupCo = $this->factory->_m('Group');
+		$groupCo = $this->dbFactory->_m('Group');
 		$groupDoc = $groupCo->findProductGroup();
 		$this->groupDoc = $groupDoc;
 		$this->trail = $groupDoc->getTrail($this->groupItemId);
 		
-		$layoutCo = $this->factory->_m('Layout');
+		$layoutCo = $this->dbFactory->_m('Layout');
 		$layoutDoc = $layoutCo->addFilter('type', 'product')
 			->fetchOne();
 		if($layoutDoc == null) {
@@ -68,6 +69,16 @@ class Product extends ContextAbstract
 		);
 		
 		return $this->breadcrumb;
+	}
+	
+	public function getResourceId()
+	{
+		return $this->productId;
+	}
+	
+	public function getTitle()
+	{
+		return $this->productLabel;
 	}
 	
 	public function getType()
