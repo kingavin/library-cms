@@ -10,6 +10,7 @@ class Article extends ContextAbstract
 	protected $groupDoc;
 	protected $trail = array();
 	
+	protected $articleDoc;
 	protected $articleId;
 	protected $articleLabel;
 	
@@ -20,6 +21,7 @@ class Article extends ContextAbstract
 		if($articleDoc == null) {
 			$this->groupItemId = 0;
 		} else {
+			$this->artcileDoc = $articleDoc;
 			$this->groupItemId = $articleDoc->groupId;
 			$this->articleId = $articleDoc->getId();
 			$this->articleLabel = $articleDoc->label;
@@ -36,6 +38,11 @@ class Article extends ContextAbstract
 			$layoutDoc = $this->createDefaultLayout('article');
 		}
 		$this->layoutDoc = $layoutDoc;
+	}
+	
+	public function getResourceDoc()
+	{
+		return $this->articleDoc;
 	}
 	
 	public function getGroupDoc()

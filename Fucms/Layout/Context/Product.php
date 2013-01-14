@@ -10,6 +10,7 @@ class Product extends ContextAbstract
 	protected $groupDoc;
 	protected $trail = array();
 	
+	protected $productDoc;
 	protected $productId;
 	protected $productLabel;
 	
@@ -20,6 +21,7 @@ class Product extends ContextAbstract
 		if($productDoc == null) {
 			$this->groupItemId = 0;
 		} else {
+			$this->productDoc = $productDoc;
 			$this->groupItemId = $productDoc->groupId;
 			$this->productLabel = $productDoc->label;
 		}
@@ -36,6 +38,12 @@ class Product extends ContextAbstract
 		}
 		$this->layoutDoc = $layoutDoc;
 	}
+	
+	public function getResourceDoc()
+	{
+		return $this->productDoc;
+	}
+	
 	public function getGroupDoc()
 	{
 		return $this->groupDoc;

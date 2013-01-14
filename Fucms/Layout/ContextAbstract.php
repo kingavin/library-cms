@@ -44,6 +44,11 @@ abstract class ContextAbstract
 		return $this->trail;
 	}
 	
+	public function getResourceDoc()
+	{
+		return null;
+	}
+	
 	abstract public function getResourceId();
 	
 	abstract public function getTitle();
