@@ -15,6 +15,7 @@ class Front implements ServiceLocatorAwareInterface
 	protected $context			= null;
 	protected $generalSiteInfo	= null;
 	protected $stageList		= null;
+	protected $brickRegister	= null;
 	protected $brickViewList	= null;
 	
 	public function initLayout(MvcEvent $e)
@@ -39,7 +40,8 @@ class Front implements ServiceLocatorAwareInterface
 		
 		$factory = $sm->get('Core\Mongo\Factory');
 		$brickRegister = new Register($controller, new RegisterConfig($layoutDoc, $factory));
-		$sm->setService('Brick\Register', $brickRegister);
+		$this->brickRegister = $brickRegister;
+//		$sm->setService('Brick\Register', $brickRegister);
 		//$controller->setBrickRegister($brickRegister);
 	
 		$sessionAdmin	= new SessionAdmin();
@@ -104,10 +106,14 @@ class Front implements ServiceLocatorAwareInterface
 	public function getBrickViewList()
 	{
 		if($this->brickViewList == null) {
-			$brickRegister = $this->sm->get('Brick\Register');
-			$this->brickViewList = $brickRegister->renderAll();
+			$this->brickViewList = $this->brickRegister->renderAll();
 		}
 		return $this->brickViewList;
+	}
+	
+	public function getBrickRegister()
+	{
+		return $this->brickRegister;
 	}
 	
 	public function setRouteMatch($routeMatch)
