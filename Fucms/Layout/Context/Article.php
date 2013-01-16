@@ -21,7 +21,7 @@ class Article extends ContextAbstract
 		if($articleDoc == null) {
 			$this->groupItemId = 0;
 		} else {
-			$this->artcileDoc = $articleDoc;
+			$this->articleDoc = $articleDoc;
 			$this->groupItemId = $articleDoc->groupId;
 			$this->articleId = $articleDoc->getId();
 			$this->articleLabel = $articleDoc->label;
