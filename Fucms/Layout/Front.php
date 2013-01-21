@@ -57,7 +57,7 @@ class Front implements ServiceLocatorAwareInterface
 			'cssList' => $cssList,
 		));
 		
-		$siteConfig = $sm->get('Fucms\SiteConfig');
+		$siteConfig = $sm->get('ConfigObject\EnvironmentConfig');
 		$viewHelper = $sm->get('ViewHelperManager');
 		$headFileCo = $factory->_m('HeadFile');
 		$headFileDocs = $headFileCo->fetchDoc();
