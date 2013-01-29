@@ -43,7 +43,8 @@ class Class_Mongo_Brick_Doc extends App_Mongo_Db_Document
 			$solidClassName = str_replace('_', '\\', $className);
 			$solidClassName = $solidClassName;
 		}
-		$solidBrick = new $solidClassName($this, $controller);
+		$solidBrick = new $solidClassName();
+		$solidBrick->initParam($this, $controller);
 		return $solidBrick;
 	}
 }

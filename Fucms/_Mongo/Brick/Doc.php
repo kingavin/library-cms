@@ -31,7 +31,8 @@ class Doc extends \App_Mongo_Db_Document
 		} else {
 			throw new Class_Brick_Exception('Brick file: '.BASE_PATH.'/extension/'.$folderPath.'/'.$fileName.'.php'.' not exist for '.$className);
 		}
-		$solidBrick = new $className($this, $controller);
+		$solidBrick = new $className();
+		$solidBrick->initParam($this, $controller);
 		return $solidBrick;
 	}
 }
