@@ -7,6 +7,8 @@ class SiteConfig
 	
 	public $apiKey = 'zvmiopav7BbuifbahoUifbqov541huog5vua4ofaweafeq98fvvxreqh';
 
+	public $env = 'production';
+	
 	public $organizationCode;
 	public $remoteSiteId;
 	public $globalSiteId;
@@ -17,8 +19,13 @@ class SiteConfig
 	public $libUrl;
 	public $fileFolderUrl;
 
+	public $accountServer;
+	
 	public function __construct($serverConfig)
 	{
+		$this->env = $serverConfig['env'];
+		$this->accountServer = $serverConfig['accountServer'];
+		
 		$libVersion = $serverConfig['libVersion'];
 		$fileServer = $serverConfig['fileServer'];
 		
