@@ -30,11 +30,8 @@ class SiteConfig
 		$fileServer = $serverConfig['fileServer'];
 		
 		$this->organizationCode	= self::$siteArr['organizationCode'];
-		if(!isset(self::$siteArr['remoteSiteId'])) {
-			$this->remoteSiteId = self::$siteArr['_id']->{'$id'};
-		} else {
-			$this->remoteSiteId = self::$siteArr['remoteSiteId'];
-		}
+		$this->remoteSiteId = self::$siteArr['_id']->{'$id'};
+		
 		$this->globalSiteId		= self::$siteArr['globalSiteId'];
 
 		$this->dbName = 'cms_'.$this->globalSiteId;
