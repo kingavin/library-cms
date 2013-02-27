@@ -17,9 +17,11 @@ class Class_Mongo_Product_Doc extends App_Mongo_Entity_Doc
 			'weight',
 			'graphics',
 			'attachmentFiles',
-			'status'
+			'status',
+			'attributes',
+			'attributesLabel'
 	);
-
+	
 	public function setAttachments($urlArr, $nameArr, $typeArr)
 	{
 		if(count($urlArr) == 0) {
