@@ -6,7 +6,12 @@ class Class_Mongo_Layout_Doc extends App_Mongo_Db_Document
 		'type',
 		'alias',
 		'default',
-		'hideHead',
-		'hideTail',
+		'useTpl',
+		'tplFileContent'
 	);
+	
+	public function getTplFileContent()
+	{
+		return $this->_data['tplFileContent'];
+	}
 }
