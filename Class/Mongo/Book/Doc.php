@@ -5,7 +5,8 @@ class Class_Mongo_Book_Doc extends App_Mongo_Tree_Doc
 		'label',
 		'alias',
 		'layoutAlias',
-		'description'
+		'description',
+		'bookIndex'
 	);
 
 	protected function _getIndex()
